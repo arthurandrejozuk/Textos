@@ -1,0 +1,17 @@
+{
+    "private": true,
+    "workspaces": {
+      "packages": [
+        "packages/*",
+        "web/*"
+      ]
+    },
+    "scripts": {
+      "web": "yarn workspace @art/app",
+      "packages": "yarn workspace @art/packages"
+    },
+    "dependencies": {
+      "styled-components": "^6.1.12"
+    }
+  }
+  
