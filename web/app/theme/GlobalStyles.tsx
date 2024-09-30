@@ -23,6 +23,7 @@ body {
   min-height: 100vh;
   line-height: 1;
   text-rendering: optimizeSpeed;
+  background-color: #f8e8d1;
 }
 
 // all media elements set to block and full width
