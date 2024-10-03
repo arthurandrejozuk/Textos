@@ -2,11 +2,15 @@ import styled from "styled-components";
 import Box from "@art/default/Box";
 import Text from "@art/default/Text"
 import { LuScrollText } from "react-icons/lu";
+import { FaPlus } from "react-icons/fa";
+
 
 const HeaderStyled = styled(Box)`
     
     background-color: #b47131;
     padding: 32px;
+    display: flex;
+    justify-content: space-between;
 
     h1{
         font-size: 44px;
@@ -15,7 +19,11 @@ const HeaderStyled = styled(Box)`
     .title__box{
         display: flex;
         gap: 8px;
-        margin-left: 32px;
+        margin-left: 60px;
+    }
+    .add__box{
+        margin-right: 60px;
+        cursor: pointer;
     }
 `
 
@@ -28,8 +36,8 @@ export default function Header(){
                     Textos
                 </Text>
             </Box>
-            <Box>
-                
+            <Box className="add__box">
+                <FaPlus color="fddeb6" size={36}/>
             </Box>
         </HeaderStyled>
     )
