@@ -4,7 +4,6 @@ export async function fetchApi(url: string) {
       throw new Error(`Ocorreu um erro: ${response.status}`);
     }
     const data = await response.json()
-    console.log(data);
     return data;
   }
   

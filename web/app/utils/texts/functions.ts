@@ -7,7 +7,6 @@ export async function enviaDadosTexto(titulo, subtitulo, texto) {
         body: JSON.stringify({ title: titulo, subtitle: subtitulo, text: texto })
     });
     const data = await response.json();
-    console.log(data); // O novo objeto inserido
 }
 
 export async function atualizaTextoParcial(id, titulo, subtitulo, texto) {
@@ -19,12 +18,10 @@ export async function atualizaTextoParcial(id, titulo, subtitulo, texto) {
         body: JSON.stringify({title: titulo, subtitle: subtitulo, text: texto}) 
     });
 
-    console.log(id)
 
     if (!response.ok) {
         throw new Error("Erro ao atualizar os dados");
     }
 
     const data = await response.json();
-    console.log(data); // O objeto atualizado
 }

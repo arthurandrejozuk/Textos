@@ -25,7 +25,7 @@ export default function TextosPage({ params }) {
   useEffect(() => {
     async function fetchTexto() {
       const data = await fetchApi(`http://localhost:3000/textos/${params.id}`);
-      console.log("Dados recebidos da API:", data);
+      //console.log("Dados recebidos da API:", data);
       setTexto(data);
     }
     fetchTexto();

@@ -29,8 +29,6 @@ export default function DefaultLayout({children, className}){
       data();
     },[])
 
-    console.log(textos);
-
     return(
         <DefaultStyled tag="section" className={className}>
             <Header rota={() => {router.push('/')}} onClick={() => {setAtiva(!ativa)}}/>

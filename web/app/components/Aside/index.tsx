@@ -64,7 +64,7 @@ export default function Aside({textos, ativa}:TextProps){
         <AsideStyled>
             {textos?.map(texto => {
                 return (
-                    <Box className="title__text">
+                    <Box key={texto.id} className="title__text">
                         <Link href={`/textos/${texto.id}`}>
                             <AiOutlineCaretLeft size={28}/>
                             <Text tag="h3">{texto.title}</Text>

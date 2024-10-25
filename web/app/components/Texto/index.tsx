@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
 import { atualizaTextoParcial, enviaDadosTexto } from "../../utils/texts/functions";
-import { fetchApi } from "../../utils/infra/fetchApi";
 
 const TextoStyled = styled(Box)`
     display: flex;
@@ -51,7 +50,6 @@ export default function Texto({ id, titulo, subtitulo, texto, altera}: { id?: st
   const [subtitle, setSubtitle] = useState(subtitulo);
   const [text, setText] = useState(texto);
 
-  // Atualizar estado quando as props mudarem
   useEffect(() => {
     setTitle(titulo);
     setSubtitle(subtitulo);
