@@ -46,7 +46,7 @@ const TextoStyled = styled(Box)`
 
 
 
-export default function Texto({ id, titulo, subtitulo, texto }: { id?: number; titulo?: string; subtitulo?: string; texto?: string }) {
+export default function Texto({ id, titulo, subtitulo, texto, altera}: { id?: string; titulo?: string; subtitulo?: string; texto?: string; altera: boolean}) {
   const [title, setTitle] = useState(titulo);
   const [subtitle, setSubtitle] = useState(subtitulo);
   const [text, setText] = useState(texto);
@@ -61,7 +61,7 @@ export default function Texto({ id, titulo, subtitulo, texto }: { id?: number; t
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevenir comportamento padrão do submit
     
-    if (id) {
+    if (altera) {
       // Se um ID estiver presente, atualize o texto
       await atualizaTextoParcial(id, title, subtitle, text);
     } else {
@@ -100,7 +100,7 @@ export default function Texto({ id, titulo, subtitulo, texto }: { id?: number; t
           />
         </Box>
         <button type="submit" aria-label="Adicionar ou atualizar texto">
-          <FaPlus color="#fddeb6" size={36} />
+          {altera ? "Alterar" : <FaPlus color="#fddeb6" size={36} />}
         </button>
       </form>
     </TextoStyled>

@@ -16,8 +16,10 @@ export async function atualizaTextoParcial(id, titulo, subtitulo, texto) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({titulo, subtitulo, texto}) // { title: "Título Atualizado" } por exemplo
+        body: JSON.stringify({title: titulo, subtitle: subtitulo, text: texto}) 
     });
+
+    console.log(id)
 
     if (!response.ok) {
         throw new Error("Erro ao atualizar os dados");

@@ -54,6 +54,9 @@ const AsideStyled = styled(Box)`
             cursor: pointer;
         }
     }
+    @media(min-width: 800px){
+        width: 30%;
+    }
 `;
 
 export default function Aside({textos, ativa}:TextProps){

@@ -4,6 +4,6 @@ export default function Home(){
 
 
     return(
-        <FormText/>
+        <FormText alterar={false}/>
     )
 } 

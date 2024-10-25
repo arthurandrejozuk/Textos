@@ -15,10 +15,9 @@ interface Props {
 }
 
 const josefinSans = Josefin_Sans({
-  weight:"400",
-  subsets: ['latin']
-})
-
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function TextosPage({ params }) {
   const [texto, setTexto] = useState<Props>();
@@ -26,7 +25,7 @@ export default function TextosPage({ params }) {
   useEffect(() => {
     async function fetchTexto() {
       const data = await fetchApi(`http://localhost:3000/textos/${params.id}`);
-      console.log('Dados recebidos da API:', data);
+      console.log("Dados recebidos da API:", data);
       setTexto(data);
     }
     fetchTexto();
@@ -34,12 +33,14 @@ export default function TextosPage({ params }) {
 
   return (
     <>
-      <GlobalStyles/>
+      <GlobalStyles />
       <DefaultLayout className={josefinSans.className}>
         <FormText
-            titulo={texto?.title || ''} // Passar título recebido da API
-            subtitulo={texto?.subtitle || ''} // Passar subtítulo recebido da API
-            texto={texto?.text || ''}
+          alterar={true}
+          id={texto?.id}
+          titulo={texto?.title || ""} // Passar título recebido da API
+          subtitulo={texto?.subtitle || ""} // Passar subtítulo recebido da API
+          texto={texto?.text || ""}
         />
       </DefaultLayout>
     </>
