@@ -2,16 +2,18 @@ import styled from "styled-components";
 import Box from "@art/default/Box";
 import Text from "@art/default/Text"
 import { LuScrollText } from "react-icons/lu";
-import { FaPlus } from "react-icons/fa";
+import { FaList } from "react-icons/fa";
 
 
 const HeaderStyled = styled(Box)`
-    
+    position: fixed;
+    width: 100%;
+    top: 0%;
     background-color: #b47131;
-    padding: 32px;
+    padding: 28px;
     display: flex;
     justify-content: space-between;
-
+    z-index: 3;
     h1{
         font-size: 44px;
         color: #fddeb6
@@ -27,7 +29,7 @@ const HeaderStyled = styled(Box)`
     }
 `
 
-export default function Header(){
+export default function Header({onClick}){
     return(
         <HeaderStyled>
             <Box className="title__box">
@@ -37,7 +39,7 @@ export default function Header(){
                 </Text>
             </Box>
             <Box className="add__box">
-                <FaPlus color="fddeb6" size={36}/>
+                <FaList onClick={onClick} color="fddeb6" size={36} />
             </Box>
         </HeaderStyled>
     )
