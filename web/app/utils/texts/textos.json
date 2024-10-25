@@ -2,7 +2,7 @@
   "textos": [
     {
       "id": "1",
-      "title": "A",
+      "title": "Início",
       "subtitle": "Outro",
       "text": "Bacana",
       "titulo": "a",
@@ -17,9 +17,9 @@
     },
     {
       "id": "c3fc",
-      "title": "Arroz ",
+      "title": "Pão",
       "subtitle": "Ingredientes",
-      "text": "Arroz  :)"
+      "text": "Farinha e trigo"
     }
   ]
 }

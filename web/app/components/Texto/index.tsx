@@ -2,53 +2,64 @@ import Box from "@art/default/Box";
 import { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import styled from "styled-components";
-import { atualizaTextoParcial, enviaDadosTexto } from "../../utils/texts/functions";
+import {
+  atualizaTextoParcial,
+  enviaDadosTexto,
+} from "../../utils/texts/functions";
+import { usePathname, useRouter } from "next/navigation";
 
 const TextoStyled = styled(Box)`
+  display: flex;
+  z-index: 1;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 44px;
+  .title {
     display: flex;
-    z-index: 1;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 44px;
-
-    .title {
-        display: flex;
-        gap: 4px;
-
-        input,
-        textarea {
-            background-color: #f8e0bf;
-            padding: 16px;
-            font-size: 20px;
-            width: 70vw; 
-        }
-
-        textarea {
-            height: 600px;
-            resize: none;
-        }
-
-        input::placeholder {
-            color: #885712;
-        }
+    gap: 4px;
+    input,
+    textarea {
+      background-color: #f8e0bf;
+      padding: 16px;
+      font-size: 20px;
+      width: 70vw;
     }
-
-    button {
-        background-color: #b47131;
-        color: #f8e0bf;
-        padding: 12px;
-        font-size: 32px;
-        border: none; 
-        cursor: pointer; 
+    textarea {
+      height: 600px;
+      resize: none;
     }
+    input::placeholder {
+      color: #885712;
+    }
+  }
+  button {
+    background-color: #b47131;
+    color: #f8e0bf;
+    padding: 12px;
+    font-size: 32px;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
-
-
-export default function Texto({ id, titulo, subtitulo, texto, altera}: { id?: string; titulo?: string; subtitulo?: string; texto?: string; altera: boolean}) {
+export default function Texto({
+  id,
+  titulo,
+  subtitulo,
+  texto,
+  altera,
+}: {
+  id?: string;
+  titulo?: string;
+  subtitulo?: string;
+  texto?: string;
+  altera: boolean;
+}) {
   const [title, setTitle] = useState(titulo);
   const [subtitle, setSubtitle] = useState(subtitulo);
   const [text, setText] = useState(texto);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     setTitle(titulo);
@@ -58,16 +69,18 @@ export default function Texto({ id, titulo, subtitulo, texto, altera}: { id?: st
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevenir comportamento padrão do submit
-    
-    if (altera) {
+
+    if (altera && id) {
       // Se um ID estiver presente, atualize o texto
       await atualizaTextoParcial(id, title, subtitle, text);
     } else {
       // Se não houver ID, adicione um novo texto
       await enviaDadosTexto(title, subtitle, text);
     }
+
+    window.location.reload();
   };
-  
+
   return (
     <TextoStyled>
       <form onSubmit={handleSubmit}>

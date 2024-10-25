@@ -14,7 +14,7 @@ interface BoxProps {
     mouseY?: number;
 }
 
-const Tag = styled.div<BoxProps>`
+const Tag = styled.section<BoxProps>`
     
 `;
 
