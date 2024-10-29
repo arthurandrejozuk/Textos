@@ -21,6 +21,7 @@ export async function atualizaTextoParcial(id, titulo, subtitulo, texto) {
 
     if (!response.ok) {
         throw new Error("Erro ao atualizar os dados");
+        
     }
 
     //const data = await response.json();

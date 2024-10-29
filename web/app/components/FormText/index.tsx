@@ -13,7 +13,7 @@ const FormTextStyled = styled(Box)`
     width: fit-content;
     
     @media(max-width: 500px){
-   
+        
         margin-top: 30%;
     }
 

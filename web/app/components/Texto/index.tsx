@@ -6,7 +6,7 @@ import {
   atualizaTextoParcial,
   enviaDadosTexto,
 } from "../../utils/texts/functions";
-import { usePathname, useRouter } from "next/navigation";
+import Mensagem from "../Mensagem";
 
 const TextoStyled = styled(Box)`
   display: flex;
@@ -14,6 +14,14 @@ const TextoStyled = styled(Box)`
   align-items: center;
   width: 100%;
   margin-bottom: 44px;
+  .title {
+    .title__title {
+      font-size: 32px;
+    }
+    .title__subtitle {
+      font-size: 24px;
+    }
+  }
   .title {
     display: flex;
     gap: 4px;
@@ -40,10 +48,10 @@ const TextoStyled = styled(Box)`
     border: none;
     cursor: pointer;
   }
-  @media(max-width: 600px){
-    .title{
-      input, textarea{
-        
+  @media (max-width: 600px) {
+    .title {
+      input,
+      textarea {
       }
     }
   }
@@ -65,8 +73,7 @@ export default function Texto({
   const [title, setTitle] = useState(titulo);
   const [subtitle, setSubtitle] = useState(subtitulo);
   const [text, setText] = useState(texto);
-  const pathname = usePathname();
-  const router = useRouter();
+  const [mensagem, setMensagem] = useState("");
 
   useEffect(() => {
     setTitle(titulo);
@@ -77,15 +84,23 @@ export default function Texto({
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevenir comportamento padrão do submit
 
-    if (altera && id) {
-      // Se um ID estiver presente, atualize o texto
-      await atualizaTextoParcial(id, title, subtitle, text);
-    } else {
-      // Se não houver ID, adicione um novo texto
-      await enviaDadosTexto(title, subtitle, text);
+    try {
+      if (altera && id) {
+        // Se um ID estiver presente, atualize o texto
+        await atualizaTextoParcial(id, title, subtitle, text);
+        setMensagem("sucesso");
+      } else {
+        // Se não houver ID, adicione um novo texto
+        await enviaDadosTexto(title, subtitle, text);
+        setMensagem("sucesso");
+      }
+      setMensagem("sucesso");
+    } catch (err) {
+      setMensagem("falha");
     }
-
-    window.location.reload();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   return (
@@ -93,6 +108,7 @@ export default function Texto({
       <form onSubmit={handleSubmit}>
         <Box className="title">
           <input
+            className="title__title"
             placeholder="Título"
             onChange={(event) => setTitle(event.target.value)}
             type="text"
@@ -102,6 +118,7 @@ export default function Texto({
         </Box>
         <Box className="title">
           <input
+            className="title__subtitle"
             placeholder="Subtítulo"
             onChange={(event) => setSubtitle(event.target.value)}
             type="text"
@@ -111,6 +128,7 @@ export default function Texto({
         </Box>
         <Box className="title">
           <textarea
+            className="title__text"
             value={text}
             onChange={(event) => setText(event.target.value)}
             aria-label="Texto"
@@ -121,6 +139,7 @@ export default function Texto({
           {altera ? "Alterar" : <FaPlus color="#fddeb6" size={36} />}
         </button>
       </form>
+      <Mensagem tipo={mensagem} />
     </TextoStyled>
   );
 }
