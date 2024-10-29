@@ -40,6 +40,13 @@ const TextoStyled = styled(Box)`
     border: none;
     cursor: pointer;
   }
+  @media(max-width: 600px){
+    .title{
+      input, textarea{
+        
+      }
+    }
+  }
 `;
 
 export default function Texto({

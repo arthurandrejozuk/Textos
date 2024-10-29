@@ -12,6 +12,11 @@ const FormTextStyled = styled(Box)`
     margin-top: 12%;
     width: fit-content;
     
+    @media(max-width: 500px){
+   
+        margin-top: 30%;
+    }
+
 `
 
 export default function FormText({id, titulo, subtitulo, texto, alterar}:{id?:string, titulo?:string, subtitulo?:string, texto?:string, alterar: boolean}){

@@ -35,6 +35,18 @@ const HeaderStyled = styled(Box)`
         margin-right: 60px;
         cursor: pointer;
     }
+    @media(max-width:600px){
+        .text__list{
+            background-color: #b47031;
+            padding: 8px;
+            width: 48px;
+            border-radius: 4px;
+            height: auto;
+            position: fixed;
+            left: 8%;
+            top: 10%;
+        }
+    }
 `
 
 export default function Header({onClick, rota}){
@@ -44,14 +56,14 @@ export default function Header({onClick, rota}){
     return(
         <HeaderStyled>
             <Box className="title__box">
-                <LuScrollText color="fddeb6" size={36}/>
+                <LuScrollText  color="fddeb6" size={36}/>
                 <Text tag="h1">
                     Textos
                     <FaPlus onClick={rota} className="add__text" size={28}/>
                 </Text>
             </Box>
             <Box className="add__box">
-                <FaList onClick={onClick} color="fddeb6" size={36} />
+                <FaList className="text__list" onClick={onClick} color="fddeb6" size={36} />
             </Box>
         </HeaderStyled>
     )

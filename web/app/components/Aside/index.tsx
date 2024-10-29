@@ -30,7 +30,7 @@ const AsideStyled = styled(Box)`
   height: 100vh; // Garante a altura de toda a viewport
   z-index: 1;
   width: 20%;
-  padding: 32px;
+  padding-left: 12px;
   padding-top: 120px;
   scroll-behavior: smooth;
   background-color: #b47031df;
@@ -44,9 +44,6 @@ const AsideStyled = styled(Box)`
   gap: 20px;
   animation: 250ms ${({ ativo }: any) => (ativo ? fadeIn : fadeOut)} forwards;
 
-  h3 {
-    text-align: justify;
-  }
 
   .title__text,
   a {
@@ -58,8 +55,9 @@ const AsideStyled = styled(Box)`
       cursor: pointer;
     }
   }
-  @media (max-width: 1000px) {
-    width: 30%;
+  @media (max-width: 600px) {
+    width: 52%;
+    background-color: #b47031;
   }
 `;
 
