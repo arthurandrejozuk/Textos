@@ -5,35 +5,59 @@ import { fetchApi } from "../utils/infra/fetchApi";
 import Header from "../components/Header";
 import Aside from "../components/Aside";
 import { useRouter } from "next/navigation";
+import Text from "@art/default/Text";
 
-const DefaultStyled = styled(Box)``;
+const DefaultStyled = styled(Box)`
+  .falha {
+    z-index: 2;
+    position: absolute;
+    top: 22%;
+    left: 15%;
+    font-size: 32px;
+    color: red;
+  }
+`;
 
-export default function DefaultLayout({children, className}){
+export default function DefaultLayout({ children, className }) {
+  const [textos, setTextos] = useState();
+  const [ativa, setAtiva] = useState(false);
+  const [erro, setErro] = useState();
 
-    const [textos, setTextos] = useState();
-    const [ativa, setAtiva] = useState(false);
+  const router = useRouter();
 
-    const router = useRouter();
+  useEffect(() => {
+    const data = async () => {
+      try {
+        const dado = await fetchApi("http://localhost:3000/textos");
+        console.log(dado);
+        setTextos(dado);
+      } catch (e) {
+        setErro(e);
+      }
+      return data;
+    };
+    data();
+  }, []);
 
-    useEffect(() => {
-        const data = async () => {
-            try{
-                const dado = await fetchApi("http://localhost:3000/textos")
-                console.log(dado);
-                setTextos(dado);
-            } catch (e) {
-                console.log(e);
-            } 
-            return data;
-        }
-      data();
-    },[])
-
-    return(
-        <DefaultStyled tag="section" className={className}>
-            <Header rota={() => {router.push('/')}} onClick={() => {setAtiva(!ativa)}}/>
-            {children}
-            <Aside ativa={ativa} textos={textos} />
-        </DefaultStyled>
-    )
-} 
+  return (
+    <DefaultStyled tag="section" className={className}>
+      {erro ? (
+        <Text tag="h1" className="falha">
+          Não é possível enviar o texto
+        </Text>
+      ) : (
+        <></>
+      )}
+      <Header
+        rota={() => {
+          router.push("/");
+        }}
+        onClick={() => {
+          setAtiva(!ativa);
+        }}
+      />
+      {children}
+      <Aside ativa={ativa} textos={textos} />
+    </DefaultStyled>
+  );
+}

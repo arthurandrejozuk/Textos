@@ -44,7 +44,6 @@ const AsideStyled = styled(Box)`
   gap: 20px;
   animation: 250ms ${({ ativo }: any) => (ativo ? fadeIn : fadeOut)} forwards;
 
-
   .title__text,
   a {
     display: flex;
@@ -65,20 +64,24 @@ export default function Aside({ textos, ativa }: TextProps) {
   if (ativa)
     return (
       <AsideStyled>
-        {textos?.map((texto) => {
-          return (
-            <Box key={texto.id} className="title__text">
-              <Link href={`/textos/${texto.id}`}>
-                <AiOutlineCaretLeft size={20} />
-                <Text tag="h3">
-                  {texto.title.length >= 15
-                    ? texto.title.slice(0, 12) + "..."
-                    : texto.title}
-                </Text>
-              </Link>
-            </Box>
-          );
-        })}
+        {textos ? (
+          textos?.map((texto) => {
+            return (
+              <Box key={texto.id} className="title__text">
+                <Link href={`/textos/${texto.id}`}>
+                  <AiOutlineCaretLeft size={20} />
+                  <Text tag="h3">
+                    {texto.title.length >= 15
+                      ? texto.title.slice(0, 12) + "..."
+                      : texto.title}
+                  </Text>
+                </Link>
+              </Box>
+            );
+          })
+        ) : (
+          <Text>Falha ao encontrar...</Text>
+        )}
       </AsideStyled>
     );
 }

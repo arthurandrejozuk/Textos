@@ -16,7 +16,7 @@ const MensagemStyled = styled(Box)`
   }
 
   .mensagem__falha {
-    background-color: red;
+    background-color: #ff000077;
     color: red;
     padding: 12px;
     border-radius: 12px;
@@ -27,7 +27,9 @@ export default function Mensagem({ tipo }: { tipo: string }) {
   return (
     <MensagemStyled>
       <Text className={`mensagem__${tipo}`}>
-        {tipo.charAt(0).toUpperCase() + tipo.slice(1)}
+        {tipo != ""
+          ? tipo.charAt(0).toUpperCase() + tipo.slice(1) + " ao enviar!"
+          : ""}
       </Text>
     </MensagemStyled>
   );
