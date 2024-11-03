@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Box from "@art/default/Box";
 import Texto from "../Texto";
+import { FormTextProps } from "../../interfaces/FormTextProps";
 
 const FormTextStyled = styled(Box)`
   display: flex;
@@ -21,13 +22,7 @@ export default function FormText({
   subtitulo,
   texto,
   alterar,
-}: {
-  id?: string;
-  titulo?: string;
-  subtitulo?: string;
-  texto?: string;
-  alterar: boolean;
-}) {
+}: FormTextProps) {
   return (
     <FormTextStyled tag="section">
       <Texto

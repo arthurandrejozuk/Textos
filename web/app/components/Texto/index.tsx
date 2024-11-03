@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {
   atualizaTextoParcial,
   enviaDadosTexto,
-} from "../../utils/texts/functions";
+} from "../../utils/infra/texts/controller";
 import Mensagem from "../Mensagem";
 
 const TextoStyled = styled(Box)`
@@ -98,9 +98,6 @@ export default function Texto({
     } catch (err) {
       setMensagem("falha");
     }
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
   };
 
   return (

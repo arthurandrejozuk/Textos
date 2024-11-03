@@ -4,6 +4,8 @@ import Text from "@art/default/Text";
 import { TextProps } from "../../interfaces/TextProps";
 import { AiOutlineCaretLeft } from "react-icons/ai";
 import Link from "next/link";
+import { IoIosClose } from "react-icons/io";
+import { deletaTexto } from "../../utils/infra/texts/controller";
 
 const fadeIn = keyframes`
    from {
@@ -54,6 +56,11 @@ const AsideStyled = styled(Box)`
       cursor: pointer;
     }
   }
+
+  .delete__button {
+    cursor: pointer;
+  }
+
   @media (max-width: 600px) {
     width: 52%;
     background-color: #b47031;
@@ -76,6 +83,10 @@ export default function Aside({ textos, ativa }: TextProps) {
                       : texto.title}
                   </Text>
                 </Link>
+                <IoIosClose
+                  onClick={() => deletaTexto(texto.id)}
+                  className="delete__button"
+                />
               </Box>
             );
           })
