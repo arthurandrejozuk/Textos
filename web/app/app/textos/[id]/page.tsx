@@ -5,24 +5,15 @@ import { fetchApi } from "../../../utils/infra/fetchApi";
 import FormText from "../../../components/FormText";
 import { GlobalStyles } from "../../../theme/GlobalStyles";
 import DefaultLayout from "../../../screens/DefaultLayout";
-import { Josefin_Sans } from "@next/font/google";
+import { josefinSans } from "../../../theme/font-style";
 import Loading from "../../../components/Loading";
-
-interface Props {
-  id: string;
-  title: string;
-  subtitle: string;
-  text: string;
-}
-
-const josefinSans = Josefin_Sans({
-  weight: "400",
-  subsets: ["latin"],
-});
+import { useRouter } from "next/navigation";
+import { IText } from "../../../interfaces/ITexto";
 
 export default function TextosPage({ params }) {
-  const [texto, setTexto] = useState<Props>();
+  const [texto, setTexto] = useState<IText>();
   const [erro, setErro] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     async function fetchTexto() {

@@ -29,7 +29,6 @@ export default function DefaultLayout({ children, className }) {
     const data = async () => {
       try {
         const dado = await fetchApi("http://localhost:3000/textos");
-        console.log(dado);
         setTextos(dado);
       } catch (e) {
         setErro(e);
@@ -37,7 +36,9 @@ export default function DefaultLayout({ children, className }) {
       return data;
     };
     data();
-  }, []);
+  }, [ativa]);
+
+  console.log(textos);
 
   return (
     <DefaultStyled tag="section" className={className}>
@@ -49,7 +50,7 @@ export default function DefaultLayout({ children, className }) {
         <></>
       )}
       <Header
-        rota={() => {
+        mudaRota={() => {
           router.push("/");
         }}
         onClick={() => {

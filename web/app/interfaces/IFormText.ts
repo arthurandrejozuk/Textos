@@ -1,4 +1,4 @@
-export interface FormTextProps {
+export interface IFormText {
   id?: string;
   titulo?: string;
   subtitulo?: string;

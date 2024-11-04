@@ -47,14 +47,14 @@ const HeaderStyled = styled(Box)`
   }
 `;
 
-export default function Header({ onClick, rota }) {
+export default function Header({ onClick, mudaRota }) {
   return (
     <HeaderStyled>
       <Box className="title__box">
         <LuScrollText color="fddeb6" size={36} />
         <Text tag="h1">
           Textos
-          <FaPlus onClick={rota} className="add__text" size={28} />
+          <FaPlus onClick={mudaRota} className="add__text" size={28} />
         </Text>
       </Box>
       <Box className="add__box">

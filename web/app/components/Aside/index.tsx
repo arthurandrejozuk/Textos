@@ -1,11 +1,8 @@
 import styled, { keyframes } from "styled-components";
 import Box from "@art/default/Box";
 import Text from "@art/default/Text";
-import { TextProps } from "../../interfaces/TextProps";
-import { AiOutlineCaretLeft } from "react-icons/ai";
-import Link from "next/link";
-import { IoIosClose } from "react-icons/io";
-import { deletaTexto } from "../../utils/infra/texts/controller";
+import AsideComponent from "../AsideComponent";
+import { IText } from "../../interfaces/ITexto";
 
 const fadeIn = keyframes`
    from {
@@ -31,7 +28,7 @@ const fadeOut = keyframes`
 const AsideStyled = styled(Box)`
   height: 100vh; // Garante a altura de toda a viewport
   z-index: 1;
-  width: 20%;
+  width: 30%;
   padding-left: 12px;
   padding-top: 120px;
   scroll-behavior: smooth;
@@ -46,49 +43,19 @@ const AsideStyled = styled(Box)`
   gap: 20px;
   animation: 250ms ${({ ativo }: any) => (ativo ? fadeIn : fadeOut)} forwards;
 
-  .title__text,
-  a {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-
-    h3 {
-      cursor: pointer;
-    }
-  }
-
-  .delete__button {
-    cursor: pointer;
-  }
-
-  @media (max-width: 600px) {
-    width: 52%;
+  @media (max-width: 1000px) {
+    width: 60%;
     background-color: #b47031;
   }
 `;
 
-export default function Aside({ textos, ativa }: TextProps) {
+export default function Aside({ textos, ativa }) {
   if (ativa)
     return (
       <AsideStyled>
         {textos ? (
-          textos?.map((texto) => {
-            return (
-              <Box key={texto.id} className="title__text">
-                <Link href={`/textos/${texto.id}`}>
-                  <AiOutlineCaretLeft size={20} />
-                  <Text tag="h3">
-                    {texto.title.length >= 15
-                      ? texto.title.slice(0, 12) + "..."
-                      : texto.title}
-                  </Text>
-                </Link>
-                <IoIosClose
-                  onClick={() => deletaTexto(texto.id)}
-                  className="delete__button"
-                />
-              </Box>
-            );
+          textos?.map((texto: IText) => {
+            return <AsideComponent texto={texto} />;
           })
         ) : (
           <Text>Falha ao encontrar...</Text>

@@ -1,5 +1,4 @@
 export interface TextProps {
-  ativa: boolean;
   textos?: [
     {
       id: string;
